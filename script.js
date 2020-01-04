@@ -1,50 +1,16 @@
-// // h1, p, div, h2, button
-// var header = document.querySelector("h1");
-// var paragraph = document.querySelector("p");
-// var quiz = document.getElementById("quiz");
-// // header2= right/wrong
-// var header2 = document.querySelector("h2");
-// var submitBtn = document.querySelector("button");
-// // highscore
-// var highscore = document.getElementById("highscore");
-// // time
-// var time = document.getElementById("time");
-
-
-// // view highscores
-// // time = 0
-// // start quiz btn
-//   submitBtn.addEventListener("click", buildQuiz);
-//   // time set to 75 sec, starts countdown
-//   // triggers question 1, list of answers, submit btn
-//     // submit btn triggers question 2 and so on
-
-//     function buildQuiz() {
-      
-//     }
-
-//     function nextQuestion() {
-
-//     }
-
-//     function selectAnswer() {
-
-//     }
-
-
-//     function correct() {
-
-//     }
-
-//     function incorrect() {
-
-//     }
-
-//     // correct answer scores 10 points
-//     // incorrect answer scores -5 points
-//     // final score + seconds left
-
-//     // highscore addEventListener shows highscore from localStorage
+// What isn't working:
+  // hide class isn't working on buttons
+  // answer buttons aren't replacing the last answer buttons
+  // colors on background and wrong answers
+// TODO:
+  // landing page
+  // timer
+  // view high score
+  // score
+  // after quiz completion
+    // final score shown
+    // ask for initials
+    // store final score and initials in local storage
 
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
@@ -55,8 +21,12 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 //shuffled questions
 let shuffledQuestions, currentQuestionIndex;
 
+//button functionality
 startButton.addEventListener('click', startGame);
-
+nextButton.addEventListener('click', function() {
+  currentQuestionIndex++;
+  setNextQuestion();
+});
 
 function startGame() {
   resetState();
@@ -65,7 +35,7 @@ function startGame() {
   // TODO hide start button 
   startButton.classList.add('hide');
   //shuffle questions
-  shuffledQuestions = questions.sort(() => Math.random() - .5);
+  shuffledQuestions = questions.sort(function() {Math.random() - .5});
   currentQuestionIndex = 0;
   // show questions
   questionContainerElement.classList.remove('hide');
@@ -94,6 +64,7 @@ function showQuestion(question) {
 }
 
 function resetState() {
+  clearStatusClass(document.body);
   // TODO hide next button 
   nextButton.classList.add('hide');
   while( answerButtonsElement.firstChild ) {
@@ -101,6 +72,36 @@ function resetState() {
   }
 }
 
-function selectAnswer() {
+function selectAnswer(e) {
   var selectedButton = e.target;
+  var correct = selectedButton.dataset.correct;
+  setStatusClass(document.body, correct);
+  // make array from answers and loop through other buttons and select class
+  Array.from(answerButtonsElement.children).forEach(button => {
+    setStatusClass(button, button.dataset.correct);
+  });
+  //if we havent run out of questions:
+  if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    //show next button
+    nextButton.classList.remove('hide');
+  } else {
+    // show start button
+    startButton.innerText = 'Restart';
+    startButton.classList.remove('hide');
+  }
+}
+
+//TODO
+function setStatusClass(element, correct) {
+  clearStatusClass(element);
+  if( correct ) {
+    element.classList.add('correct');
+  } else {
+    element.classList.add('wrong');
+  } 
+}
+//TODO
+function clearStatusClass(element) {
+  element.classList.remove('correct');
+  element.classList.remove('wrong');
 }
