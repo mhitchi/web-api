@@ -10,8 +10,6 @@
 // // time
 // var time = document.getElementById("time");
 
-// // get questions
-// import{myQuestions} from './questions.js'
 
 // // view highscores
 // // time = 0
@@ -47,3 +45,62 @@
 //     // final score + seconds left
 
 //     // highscore addEventListener shows highscore from localStorage
+
+const startButton = document.getElementById('start-btn');
+const nextButton = document.getElementById('next-btn');
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
+
+//shuffled questions
+let shuffledQuestions, currentQuestionIndex;
+
+startButton.addEventListener('click', startGame);
+
+
+function startGame() {
+  resetState();
+
+  console.log('started');
+  // TODO hide start button 
+  startButton.classList.add('hide');
+  //shuffle questions
+  shuffledQuestions = questions.sort(() => Math.random() - .5);
+  currentQuestionIndex = 0;
+  // show questions
+  questionContainerElement.classList.remove('hide');
+  setNextQuestion();
+
+}
+
+function setNextQuestion() {
+  showQuestion(shuffledQuestions[currentQuestionIndex]);
+}
+
+function showQuestion(question) {
+  questionElement.innerHTML = question.question;
+  question.answers.forEach(answer => {
+    var button = document.createElement('button');
+    button.innerHTML = answer.text;
+    button.classList.add('btn');
+    if( answer.correct) {
+      button.dataset.correct = answer.correct;
+    } else {
+      button.dataset.correct = answer.wrong;
+    }
+    button.addEventListener('click', selectAnswer);
+    answerButtonsElement.appendChild(button);
+  });
+}
+
+function resetState() {
+  // TODO hide next button 
+  nextButton.classList.add('hide');
+  while( answerButtonsElement.firstChild ) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
+}
+
+function selectAnswer() {
+  var selectedButton = e.target;
+}

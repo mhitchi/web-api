@@ -1,32 +1,27 @@
-const myQuestions = [
+const questions = [
   {
     question: "Who is the strongest?",
-    answers: {
-      a: "Superman",
-      b: "The Terminator",
-      c: "Waluigi, obviously"
-    },
-    correctAnswer: "c"
+    answers: [
+      {text: "Superman", correct: false},
+      {text: "The Terminator", correct: false},
+      {text: "Waluigi, obviously", correct: true}
+    ],
   },
   {
     question: "What is the best site ever created?",
-    answers: {
-      a: "SitePoint",
-      b: "Simple Steps Code",
-      c: "Trick question; they're both the best"
-    },
-    correctAnswer: "c"
+    answers: [
+      {text: "SitePoint", correct: false},
+      {text: "Simple Steps Code", correct: false},
+      {text: "Trick question; they're both the best", correct: true}
+    ],
   },
   {
     question: "Where is Waldo really?",
-    answers: {
-      a: "Antarctica",
-      b: "Exploring the Pacific Ocean",
-      c: "Sitting in a tree",
-      d: "Minding his own business, so stop asking"
-    },
-    correctAnswer: "d"
+    answers: [
+      {text: "Antarctica", correct: false},
+      {text: "Exploring the Pacific Ocean", correct: false},
+      {text: "Sitting in a tree", correct: false},
+      {text: "Minding his own business, so stop asking", correct: true}
+    ],
   }
-];
-
-export {myQuestions};
+]
