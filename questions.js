@@ -28,3 +28,5 @@ const myQuestions = [
     correctAnswer: "d"
   }
 ];
+
+export {myQuestions};

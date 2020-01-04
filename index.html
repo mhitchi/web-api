@@ -1,6 +1,9 @@
 <!doctype html>
-<html>
+<html lang="en-us">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title>Code Quiz</title>
     <!-- link stylesheet -->
     <link rel="stylesheet" href="style.css"/>
     <!-- link bootstrap -->
@@ -27,12 +30,31 @@
         </ul>
       </div>
     </nav>
+
+    <!-- card -->
+    <div class="container">
+      <!-- questions -->
+      <div id="question-container" class="hide">
+        <div id="question">Question</div>
+        <div id="answer-buttons" class="btn-grid">
+          <button class="btn">Answer 1</button>
+          <button class="btn">Answer 2</button>
+          <button class="btn">Answer 3</button>
+          <button class="btn">Answer 4</button>
+        </div>
+      </div>
+      <!-- controls -->
+      <div class="controls">
+        <button id="start-btn" class="start-btn btn">Start</button>
+        <button id="next-btn" class="next-btn btn hide">Next</button>
+      </div>
+    </div>
     <!-- h1, p, div, h2, button -->
-    <h1>Coding Quiz Challenge</h1>
+    <!-- <h1>Coding Quiz Challenge</h1>
     <p>Try to answer as quickly and correctly as possible.</p>
-    <div id="quiz"></div>>
+    <div id="quiz"></div>
     <h2></h2>
-    <button type="button" class="btn btn-info">Continue</button>
+    <button type="button" class="btn btn-info">Continue</button> -->
     <!-- link javascript files -->
     <script src="script.js"></script>
     <script src="questions.js"></script>
