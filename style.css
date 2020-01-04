@@ -67,11 +67,14 @@ body.wrong {
 
 .btn.correct {
   /* --hue: var(--hue-correct); */
-  color: black;
+  background-color: green;
+  color: white;
 }
 
 .btn.wrong {
   /* --hue: var(--hue-wrong); */
+  background-color: red;
+  color: white;
 }
 
 .start-btn, next-btn {
