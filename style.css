@@ -15,13 +15,9 @@
 
 body {
   /* --hue: var(--hue-neutral); */
-  padding: 60px;
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   /* background-color: hsl(var(--hue), 100%, 20%); */
-  background-color: yellowgreen;
+  background-color: yellowgreen !important;
 }
 
 body.correct {
@@ -35,6 +31,12 @@ body.wrong {
 }
 
 .container {
+  padding: 20px;
+  margin: 20px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
   width: 800px;
   max-width: 80%;
   background-color: white;
