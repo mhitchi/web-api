@@ -8,6 +8,7 @@
     // *incorrect answer scores -5 points
     // *final score + seconds left
     // *highscore addEventListener shows highscore from localStorage
+const origButton = document.getElementById('og');
 
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
@@ -20,12 +21,18 @@ const timer = document.getElementById('timer');
 const timeoutMessage = document.getElementById('timeout');
 var score;
 
+let currentQuestionIndex = 0;
+
   //set time to 75
   var secondsLeft = 75;
     // Build the landing page with no action. Just the landing. 
     // What is required from the spec sheet?  A button action or “START” -> start your script.js file . 
     // Define some variable, Grab (or maybe add in the HTML first) some elements and add a listener to the button. 
   startButton.addEventListener('click', startGame) 
+  nextButton.addEventListener('click', function() {
+    currentQuestionIndex++;
+    setNextQuestion;
+  });
     // Write some logic to add something to the DOM when the button is clicked (make it simple first, just some text or an item from an array. Take a look back at the exercises we did in class. If you didn’t understand some part the answers have been posted. Look through them and try to follow what is happening. If some code looks useful. Copy it over and comment it out and use that as a visual reference for your new function or action. Then delete the commented out code when you don’t need it.) and have something be appended to the DOM. 
   function startGame() {
     console.log("started");
@@ -42,7 +49,7 @@ var score;
     score = 0;
     //display question
     questionContainerElement.classList.remove('hide');
-    showQuestion();
+    setNextQuestion();
   }
 
     //start timer from 75
@@ -67,18 +74,39 @@ var score;
       timer.innerHTML = " ";
       timeoutMessage.classList.remove('hide');
     } 
-    // Once that is working, display a question. 
 
-    function showQuestion() {
-      //print one question every 15 seconds
-      var everyFifteen = setInterval(function() {
-        // loop through array of question objects
-        for( var i = 0; i < questions.length; i++ ) {
-          //print question
-          questionElement.innerHTML = question[i];
-          //print answers
+    // Once that is working, display a question. 
+    function setNextQuestion() {
+      // resetState();
+      showQuestion(myQuestions[currentQuestionIndex]);
+    }
+
+    function showQuestion(question) {
+      // //print one question every 15 seconds
+      // var everyFifteen = setInterval(function() {
+      //   // loop through array of question objects
+      //   for( var i = 0; i < myQuestions.length; i++ ) {
+      //     //print question
+      //     console.log(question[i]);
+      //     questionElement.innerHTML = question[i];
+      //     //print answers
+      //   }
+      // }, 15000);
+      questionElement.innerHTML = question.question;
+      question.answers.forEach(answer => {
+        var button = document.createElement('button');
+        button.innerHTML = answer.text;
+        button.classList.add('btn');
+        if( answer.correct ) {
+          button.dataset.correct = answer.correct;
+        } else {
+          button.dataset.correct = answer.wrong;
         }
-      }, 15000);
+        // button.addEventListener('click', selectAnswer);
+        answerButtonsElement.appendChild(button);
+        // remove original buttons
+        answerButtonsElement.removeChild(origButton);
+      });
     }
     // Once the question is displaying, figure out how to get the answer from the user selecting a checkbox. OR simply clicking on their answer. (Sounds like the event bubbling we went over on Friday * HINT* ) . 
     // See if you can log that answer somewhere (be it the console to start and maybe to a variable after that). 

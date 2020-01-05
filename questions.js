@@ -1,4 +1,4 @@
-const questions = [
+const myQuestions = [
   {
     question: "Who is the strongest?",
     answers: [
