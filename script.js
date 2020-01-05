@@ -44,6 +44,7 @@ function startGame() {
 }
 
 function setNextQuestion() {
+  resetState();
   showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
@@ -73,7 +74,8 @@ function resetState() {
 }
 
 function selectAnswer(e) {
-  var selectedButton = e.target;
+  const selectedButton = e.target;
+  // correct returns as a boolean
   var correct = selectedButton.dataset.correct;
   setStatusClass(document.body, correct);
   // make array from answers and loop through other buttons and select class
