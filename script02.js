@@ -2,12 +2,12 @@
 // time = 0
 // start quiz btn
   // time set to 75 sec, starts countdown
-  // triggers question 1, list of answers, submit btn
-    // submit btn triggers question 2 and so on
-    // correct answer scores 10 points
-    // incorrect answer scores -5 points
-    // final score + seconds left
-    // highscore addEventListener shows highscore from localStorage
+  // *triggers question 1, list of answers, submit btn
+    // *submit btn triggers question 2 and so on
+    // *correct answer scores 10 points
+    // *incorrect answer scores -5 points
+    // *final score + seconds left
+    // *highscore addEventListener shows highscore from localStorage
 
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
@@ -17,6 +17,11 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const header = document.querySelector('h1');
 const paragraph = document.querySelector('p');
 const timer = document.getElementById('timer');
+const timeoutMessage = document.getElementById('timeout');
+var score;
+
+  //set time to 75
+  var secondsLeft = 75;
     // Build the landing page with no action. Just the landing. 
     // What is required from the spec sheet?  A button action or “START” -> start your script.js file . 
     // Define some variable, Grab (or maybe add in the HTML first) some elements and add a listener to the button. 
@@ -31,18 +36,50 @@ const timer = document.getElementById('timer');
     //hide h1 and p
     header.classList.add('hide');
     paragraph.classList.add('hide');
+    //set timer
+    setTime();
+    //set score to 0
+    score = 0;
+    //display question
+    questionContainerElement.classList.remove('hide');
+    showQuestion();
+  }
+
     //start timer from 75
-    var secondsLeft = 75;
     function setTime() {
       var timerInterval = setInterval(function() {
         //decrease seconds left
-        secondsLeft--
+        secondsLeft--;
+        //count down
+        timer.innerHTML = "Time: " + secondsLeft;
+      }, 1000);
+
+      //once secondsLeft is 0, clear out and print time out
+      if(secondsLeft === 0) {
+        //stop mechanism
+        clearInterval(timerInterval);
+        timeOut();
       }
-      )}
-    //set score to 0
-    //display question
-  }
+    }
+
+    //TODO not working. Tried secondsLeft = 0, 
+    function timeOut() {
+      timer.innerHTML = " ";
+      timeoutMessage.classList.remove('hide');
+    } 
     // Once that is working, display a question. 
+
+    function showQuestion() {
+      //print one question every 15 seconds
+      var everyFifteen = setInterval(function() {
+        // loop through array of question objects
+        for( var i = 0; i < questions.length; i++ ) {
+          //print question
+          questionElement.innerHTML = question[i];
+          //print answers
+        }
+      }, 15000);
+    }
     // Once the question is displaying, figure out how to get the answer from the user selecting a checkbox. OR simply clicking on their answer. (Sounds like the event bubbling we went over on Friday * HINT* ) . 
     // See if you can log that answer somewhere (be it the console to start and maybe to a variable after that). 
     // When one question and answer submission works, then how do we use that button submission to trigger the next question. 

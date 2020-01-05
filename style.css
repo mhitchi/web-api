@@ -30,12 +30,13 @@ body.wrong {
   background-color: red;
 }
 
+/* TODO wont center. */
 .container {
   padding: 20px;
-  margin: 20px;
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
+  margin: auto;
+  /* display: block; */
+  /* justify-content: center; */
+  /* align-items: center; */
   margin-top: 100px;
   width: 800px;
   max-width: 80%;
