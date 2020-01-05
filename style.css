@@ -89,5 +89,5 @@ body.wrong {
 
 /* TODO only working for questions, not buttons */
 .hide {
-  display: none;
+  display: none !important;
 }

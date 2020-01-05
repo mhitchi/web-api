@@ -14,6 +14,8 @@ const nextButton = document.getElementById('next-btn');
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
+const header = document.querySelector('h1');
+const paragraph = document.querySelector('p');
     // Build the landing page with no action. Just the landing. 
     // What is required from the spec sheet?  A button action or “START” -> start your script.js file . 
     // Define some variable, Grab (or maybe add in the HTML first) some elements and add a listener to the button. 
@@ -23,7 +25,11 @@ const answerButtonsElement = document.getElementById('answer-buttons');
     console.log("started");
     //hide start button
     startButton.classList.add("hide");
+    //show next button
+    nextButton.classList.remove("hide");
     //hide h1 and p
+    header.classList.add('hide');
+    paragraph.classList.add('hide');
     //start timer from 75
     //set score to 0
     //display question
