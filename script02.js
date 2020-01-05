@@ -8,6 +8,8 @@
     // *incorrect answer scores -5 points
     // *final score + seconds left
     // *highscore addEventListener shows highscore from localStorage
+//TODO hide buttons
+//const origButton = document.querySelectorAll('og');
 const origButton = document.getElementById('og');
 
 const startButton = document.getElementById('start-btn');
@@ -106,7 +108,11 @@ let currentQuestionIndex = 0;
         answerButtonsElement.appendChild(button);
         // remove original buttons
         // ERROR: Uncaught NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node
-        answerButtonsElement.removeChild(origButton);
+        // answerButtonsElement.removeChild(origButton);
+        //removed first and last buttons: origButton.classList.add('hide');
+        //removed first and last buttons: origButton.style.display = "none";
+        //removed first and last buttons: origButton.hidden = true;
+        //removed all buttons:  answerButtonsElement.remove(origButton);
       });
     }
     // Once the question is displaying, figure out how to get the answer from the user selecting a checkbox. OR simply clicking on their answer. (Sounds like the event bubbling we went over on Friday * HINT* ) . 
