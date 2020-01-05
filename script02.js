@@ -105,6 +105,7 @@ let currentQuestionIndex = 0;
         // button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
         // remove original buttons
+        // ERROR: Uncaught NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node
         answerButtonsElement.removeChild(origButton);
       });
     }
