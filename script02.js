@@ -38,6 +38,7 @@ const timeoutMessage = document.getElementById('timeout');
 var score;
 
 let currentQuestionIndex;
+//let shuffledQuestions;
 
   //set time to 75
   var secondsLeft = 5;
@@ -67,6 +68,9 @@ let currentQuestionIndex;
     //display question
     questionContainerElement.classList.remove('hide');
     setNextQuestion();
+    //shuffle questions
+    //shuffledQuestions = questions.sort(function() {Math.random() - .5});
+    //currentQuestionIndex = 0;
   }
 
     //start timer from 75
@@ -78,16 +82,14 @@ let currentQuestionIndex;
         timer.innerHTML = "Time: " + secondsLeft;
 
               //once secondsLeft is 0, clear out and print time out
-      //TODO isn't working
-      if(secondsLeft === 0) {
-        //stop mechanism
-        clearInterval(timerInterval);
-        timeOut();
+        if(secondsLeft === 0) {
+          //stop mechanism
+          clearInterval(timerInterval);
+          timeOut();
       }
       }, 1000);
     }
 
-    //TODO not working. Tried secondsLeft = 0, 
     function timeOut() {
       timer.innerHTML = " ";
       timeoutMessage.classList.remove('hide');
@@ -99,40 +101,46 @@ let currentQuestionIndex;
       // resetState();
       console.log("next question");
       showQuestion(myQuestions[currentQuestionIndex]);
+      //showQuestion(shuffledQuestions[currentQuestionIndex]);
     }
 
     function showQuestion(question) {
-      // //print one question every 15 seconds
-      // var everyFifteen = setInterval(function() {
-      //   // loop through array of question objects
-      //   for( var i = 0; i < myQuestions.length; i++ ) {
-      //     //print question
-      //     console.log(question[i]);
-      //     questionElement.innerHTML = question[i];
-      //     //print answers
+      //TODO not working
+      for( var i = 0; i < myQuestions.length; i++ ) {
+            //print question
+            questionElement.innerHTML = myQuestions[i].question;
+            //print answers
+            myQuestions[i].answers.forEach(answer => {
+              var button = document.createElement('button');
+              button.innerHTML = answer.text;
+              button.classList.add('btn');
+              if( answer.correct ) {
+                button.dataset.correct = answer.correct;
+              } else {
+                button.dataset.correct = answer.wrong;
+              }
+              // button.addEventListener('click', selectAnswer);
+              answerButtonsElement.appendChild(button);
+            });
+          }
+
+      //TODO not working
+      // questionElement.innerHTML = question.question;
+      // question.answers.forEach(answer => {
+      //   var button = document.createElement('button');
+      //   button.innerHTML = answer.text;
+      //   button.classList.add('btn');
+      //   if( answer.correct ) {
+      //     button.dataset.correct = answer.correct;
+      //   } else {
+      //     button.dataset.correct = answer.wrong;
       //   }
-      // }, 15000);
-      questionElement.innerHTML = question.question;
-      question.answers.forEach(answer => {
-        var button = document.createElement('button');
-        button.innerHTML = answer.text;
-        button.classList.add('btn');
-        if( answer.correct ) {
-          button.dataset.correct = answer.correct;
-        } else {
-          button.dataset.correct = answer.wrong;
-        }
-        // button.addEventListener('click', selectAnswer);
-        answerButtonsElement.appendChild(button);
-        // remove original buttons
-        // ERROR: Uncaught NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node
-        // answerButtonsElement.removeChild(origButton);
-        //removed first and last buttons: origButton.classList.add('hide');
-        //removed first and last buttons: origButton.style.display = "none";
-        //removed first and last buttons: origButton.hidden = true;
-        //removed all buttons:  answerButtonsElement.remove(origButton);
-      });
+      //   // button.addEventListener('click', selectAnswer);
+      //   answerButtonsElement.appendChild(button);
+
+    //   });
     }
+
     // Once the question is displaying, figure out how to get the answer from the user selecting a checkbox. OR simply clicking on their answer. (Sounds like the event bubbling we went over on Friday * HINT* ) . 
     // See if you can log that answer somewhere (be it the console to start and maybe to a variable after that). 
     // When one question and answer submission works, then how do we use that button submission to trigger the next question. 
