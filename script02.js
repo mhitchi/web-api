@@ -10,7 +10,21 @@
     // *highscore addEventListener shows highscore from localStorage
 //TODO hide buttons
 //const origButton = document.querySelectorAll('og');
-const origButton = document.getElementById('og');
+//const origButton = document.getElementById('og');
+
+// What isn't working:
+  // colors on background and wrong answers
+  // next button isn't working
+  // select question isn't working
+// TODO:
+  // landing page
+  // timer
+  // *view high score
+  // *score
+  // after quiz completion
+    // *final score shown
+    // *ask for initials
+    // *store final score and initials in local storage
 
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
@@ -23,10 +37,10 @@ const timer = document.getElementById('timer');
 const timeoutMessage = document.getElementById('timeout');
 var score;
 
-let currentQuestionIndex = 0;
+let currentQuestionIndex;
 
   //set time to 75
-  var secondsLeft = 75;
+  var secondsLeft = 5;
     // Build the landing page with no action. Just the landing. 
     // What is required from the spec sheet?  A button action or “START” -> start your script.js file . 
     // Define some variable, Grab (or maybe add in the HTML first) some elements and add a listener to the button. 
@@ -38,6 +52,7 @@ let currentQuestionIndex = 0;
     // Write some logic to add something to the DOM when the button is clicked (make it simple first, just some text or an item from an array. Take a look back at the exercises we did in class. If you didn’t understand some part the answers have been posted. Look through them and try to follow what is happening. If some code looks useful. Copy it over and comment it out and use that as a visual reference for your new function or action. Then delete the commented out code when you don’t need it.) and have something be appended to the DOM. 
   function startGame() {
     console.log("started");
+    currentQuestionIndex = 0;
     //hide start button
     startButton.classList.add("hide");
     //show next button
@@ -61,25 +76,28 @@ let currentQuestionIndex = 0;
         secondsLeft--;
         //count down
         timer.innerHTML = "Time: " + secondsLeft;
-      }, 1000);
 
-      //once secondsLeft is 0, clear out and print time out
+              //once secondsLeft is 0, clear out and print time out
+      //TODO isn't working
       if(secondsLeft === 0) {
         //stop mechanism
         clearInterval(timerInterval);
         timeOut();
       }
+      }, 1000);
     }
 
     //TODO not working. Tried secondsLeft = 0, 
     function timeOut() {
       timer.innerHTML = " ";
       timeoutMessage.classList.remove('hide');
+      console.log("time out");
     } 
 
     // Once that is working, display a question. 
     function setNextQuestion() {
       // resetState();
+      console.log("next question");
       showQuestion(myQuestions[currentQuestionIndex]);
     }
 
