@@ -1,16 +1,17 @@
 // What isn't working:
-  // hide class isn't working on buttons
-  // answer buttons aren't replacing the last answer buttons
   // colors on background and wrong answers
+  // timer doesn't stop at 0
+  // next button isn't working
+  // select question isn't working
 // TODO:
   // landing page
   // timer
-  // view high score
-  // score
+  // *view high score
+  // *score
   // after quiz completion
-    // final score shown
-    // ask for initials
-    // store final score and initials in local storage
+    // *final score shown
+    // *ask for initials
+    // *store final score and initials in local storage
 
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
@@ -35,7 +36,7 @@ function startGame() {
   // TODO hide start button 
   startButton.classList.add('hide');
   //shuffle questions
-  shuffledQuestions = questions.sort(function() {Math.random() - .5});
+  shuffledQuestions = myQuestions.sort(function() {Math.random() - .5});
   currentQuestionIndex = 0;
   // show questions
   questionContainerElement.classList.remove('hide');
@@ -45,13 +46,14 @@ function startGame() {
 
 function setNextQuestion() {
   resetState();
+  //TODO get to next question
   currentQuestionIndex++;
   showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
 function showQuestion(question) {
-  questionElement.innerHTML = question.question;
-  question.answers.forEach(answer => {
+  questionElement.innerHTML = myQuestions.question;
+  myQuestions.answers.forEach(answer => {
     var button = document.createElement('button');
     button.innerHTML = answer.text;
     button.classList.add('btn');

@@ -31,17 +31,17 @@ const nextButton = document.getElementById('next-btn');
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
-const header = document.querySelector('h1');
+const header = document.getElementById('header');
 const paragraph = document.querySelector('p');
 const timer = document.getElementById('timer');
 const timeoutMessage = document.getElementById('timeout');
 var score;
 
-let currentQuestionIndex;
+let currentQuestionIndex = -1;
 //let shuffledQuestions;
 
   //set time to 75
-  var secondsLeft = 5;
+  var secondsLeft = 775;
     // Build the landing page with no action. Just the landing. 
     // What is required from the spec sheet?  A button action or “START” -> start your script.js file . 
     // Define some variable, Grab (or maybe add in the HTML first) some elements and add a listener to the button. 
@@ -53,7 +53,6 @@ let currentQuestionIndex;
     // Write some logic to add something to the DOM when the button is clicked (make it simple first, just some text or an item from an array. Take a look back at the exercises we did in class. If you didn’t understand some part the answers have been posted. Look through them and try to follow what is happening. If some code looks useful. Copy it over and comment it out and use that as a visual reference for your new function or action. Then delete the commented out code when you don’t need it.) and have something be appended to the DOM. 
   function startGame() {
     console.log("started");
-    currentQuestionIndex = 0;
     //hide start button
     startButton.classList.add("hide");
     //show next button
@@ -70,7 +69,6 @@ let currentQuestionIndex;
     setNextQuestion();
     //shuffle questions
     //shuffledQuestions = myQuestions.sort(function() {Math.random() - .5});
-    currentQuestionIndex = 0;
   }
 
     //start timer from 75
@@ -93,38 +91,59 @@ let currentQuestionIndex;
     function timeOut() {
       timer.innerHTML = " ";
       timeoutMessage.classList.remove('hide');
-      console.log("time out");
+      questionElement.classList.add('hide');
+      answerButtonsElement.classList.add('hide');
+      nextButton.classList.add('hide');
     } 
 
     // Once that is working, display a question. 
     function setNextQuestion() {
+      // Change the index being referenced
+      currentQuestionIndex++;
+      
       // resetState();
       console.log("next question");
       showQuestion(myQuestions[currentQuestionIndex]);
-      currentQuestionIndex++;
+      
       //showQuestion(shuffledQuestions[currentQuestionIndex]);
     }
 
     function showQuestion(question) {
       //TODO not working
-      for( var i = 0; i < myQuestions.length; i++ ) {
-            //print question
-            questionElement.innerHTML = myQuestions[i].question;
-            answerButtonsElement.innerHTML = "";
-            //print answers
-            myQuestions[i].answers.forEach(answer => {
-              var button = document.createElement('button');
-              button.innerHTML = answer.text;
-              button.classList.add('btn');
-              if( answer.correct ) {
-                button.dataset.correct = answer.correct;
-              } else {
-                button.dataset.correct = answer.wrong;
-              }
-              // button.addEventListener('click', selectAnswer);
-              answerButtonsElement.appendChild(button);
-            });
+      questionElement.innerHTML = question.question;
+        answerButtonsElement.innerHTML = "";
+        //print answers
+        question.answers.forEach(answer => {
+          var button = document.createElement('button');
+          button.innerHTML = answer.text;
+          button.classList.add('btn');
+          if( answer.correct ) {
+            button.dataset.correct = answer.correct;
+          } else {
+            button.dataset.correct = answer.wrong;
           }
+          // button.addEventListener('click', selectAnswer);
+          answerButtonsElement.appendChild(button);
+        });
+
+      // for( var i = 0; i < myQuestions.length; i++ ) {
+      //       //print question
+      //       questionElement.innerHTML = myQuestions[i].question;
+      //       answerButtonsElement.innerHTML = "";
+      //       //print answers
+      //       myQuestions[i].answers.forEach(answer => {
+      //         var button = document.createElement('button');
+      //         button.innerHTML = answer.text;
+      //         button.classList.add('btn');
+      //         if( answer.correct ) {
+      //           button.dataset.correct = answer.correct;
+      //         } else {
+      //           button.dataset.correct = answer.wrong;
+      //         }
+      //         // button.addEventListener('click', selectAnswer);
+      //         answerButtonsElement.appendChild(button);
+      //       });
+      //     }
 
       //TODO not working
       // questionElement.innerHTML = question.question;
