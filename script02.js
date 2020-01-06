@@ -69,8 +69,8 @@ let currentQuestionIndex;
     questionContainerElement.classList.remove('hide');
     setNextQuestion();
     //shuffle questions
-    //shuffledQuestions = questions.sort(function() {Math.random() - .5});
-    //currentQuestionIndex = 0;
+    //shuffledQuestions = myQuestions.sort(function() {Math.random() - .5});
+    currentQuestionIndex = 0;
   }
 
     //start timer from 75
@@ -101,6 +101,7 @@ let currentQuestionIndex;
       // resetState();
       console.log("next question");
       showQuestion(myQuestions[currentQuestionIndex]);
+      currentQuestionIndex++;
       //showQuestion(shuffledQuestions[currentQuestionIndex]);
     }
 
@@ -109,6 +110,7 @@ let currentQuestionIndex;
       for( var i = 0; i < myQuestions.length; i++ ) {
             //print question
             questionElement.innerHTML = myQuestions[i].question;
+            answerButtonsElement.innerHTML = "";
             //print answers
             myQuestions[i].answers.forEach(answer => {
               var button = document.createElement('button');
