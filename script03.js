@@ -26,7 +26,13 @@ const timeoutMessage = document.getElementById('timeout');
 const finishMessage = document.getElementById('finished');
 const score = document.getElementById('score');
 const submitButton = document.getElementById('submit-btn');
+const viewHighscore = document.getElementById('highscore-btn');
+const inputTxt = document.getElementById('inputTxt');
+
+var highscoreList = [];
+var finalScore;
 var button;
+var initials;
 
 let currentQuestionIndex = -1;
 
@@ -86,7 +92,8 @@ function setNextQuestion() {
   // Change the index being referenced
   currentQuestionIndex++;
 
-  //TODO show finished message and textInput for high score initials when done with questions
+  //show finished message
+  //TODO show textInput for high score initials when done with questions
   if( currentQuestionIndex === 5 ) {
     timeoutMessage.classList.add('hide');
     finishMessage.classList.remove('hide');
@@ -97,12 +104,15 @@ function setNextQuestion() {
     //show score
     score.innerHTML = "Score: " + (points + secondsLeft);
     //TODO make element to show score
-    //TODO make element textInput for initials
-    submitButton.classList.remove('hide');
-    //TODO event listener for submit button
-      //TODO save score and initals to local storage
-    //TODO view highscores btn
-      //TODO display top 3 high scores
+    //TODO show textInput for initials
+    inputTxt.classList.remove('hide');
+    inputTxt.maxLength = 2
+    //if not empty, show submit button
+    if( inputTxt.value !== " " ) { 
+      submitButton.classList.remove('hide');
+      //TODO event listener for submit button
+      submitButton.addEventListener('click', saveLocal);
+    }
   }
   
   // resetState();
@@ -163,4 +173,23 @@ function selectAnswer(event) {
 //   element.classList.remove('correct');
 //   element.classList.remove('wrong');
 // }
+
+//TODO save score and initials to local storage
+    //TODO save scores and initial pairs in array
+function saveLocal() {
+  finalScore = points + secondsLeft;
+  localStorage.setItem("finalScore", JSON.stringify(finalScore));
+  //TODO Not saving input text
+  //localStorage.setItem("initials", JSON.stringify(inputTxt.value()));
+  submitButton.classList.add('hide');
+  viewHighscore.classList.remove('hide');
+  //add event listener on highscore button
+  viewHighscore.addEventListener('click', showHighscore);
+}
   
+//TODO display top 3 high scores
+function showHighscore() {
+  JSON.parse(localStorage.getItem("finalScore"));
+  //sort array for highest scores
+  //create and append elements for initials and high scores
+}
