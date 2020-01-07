@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: yellowgreen !important;
+  background-color: paleturquoise !important;
 }
 
 body.correct {
@@ -37,14 +37,14 @@ body.wrong {
 }
 
 .btn {
-  background-color: yellowgreen;
+  background-color: peru;
   border-radius: 5px 10px;
   color: black;
   outline: none;
 }
 
 .btn:hover {
-  border-color: blueviolet;
+  background-color: orange;
 }
 
 .btn.correct {
@@ -61,6 +61,11 @@ body.wrong {
   font-size: 1.5rem;
   font-weight: bold;
   padding: 10px 20px;
+  background-color: palevioletred;
+}
+
+.start-btn:hover, .next-btn:hover {
+  background-color: orangered;
 }
 
 .controls {
@@ -71,4 +76,9 @@ body.wrong {
 
 .hide {
   display: none !important;
+}
+
+#question {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
