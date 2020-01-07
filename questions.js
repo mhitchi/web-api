@@ -23,5 +23,21 @@ const myQuestions = [
       {text: "Exploring the Pacific Ocean", correct: false},
       {text: "Sitting in a tree", correct: false}
     ],
+  },
+  {
+    question: "Who is the strongest 02?",
+    answers: [
+      {text: "Superman", correct: false},
+      {text: "The Terminator", correct: false},
+      {text: "Waluigi, obviously", correct: true}
+    ],
+  },
+  {
+    question: "What is the best site ever created 02?",
+    answers: [
+      {text: "SitePoint", correct: false},
+      {text: "Simple Steps Code", correct: false},
+      {text: "Trick question; they're both the best", correct: true}
+    ],
   }
 ]

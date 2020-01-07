@@ -5,7 +5,7 @@
 
 // What isn't working:
   // colors on background and wrong answers
-  // select question isn't working
+  // select question returning the right value
 // TODO:
   // *view high score
   // *score
@@ -25,6 +25,7 @@ const timer = document.getElementById('timer');
 const timeoutMessage = document.getElementById('timeout');
 const finishMessage = document.getElementById('finished');
 const score = document.getElementById('score');
+const submitButton = document.getElementById('submit-btn');
 var button;
 
 let currentQuestionIndex = -1;
@@ -84,18 +85,27 @@ function timeOut() {
 function setNextQuestion() {
   // Change the index being referenced
   currentQuestionIndex++;
+
+  //TODO show finished message and textInput for high score initials when done with questions
+  if( currentQuestionIndex === 5 ) {
+    timeoutMessage.classList.add('hide');
+    finishMessage.classList.remove('hide');
+    questionElement.classList.add('hide');
+    answerButtonsElement.classList.add('hide');
+    nextButton.classList.add('hide');
+
+
+    //show score
+    score.innerHTML = "Score: " + (points + secondsLeft);
+    //TODO make element to show score
+    //TODO make element textInput for initials
+    submitButton.classList.remove('hide');
+  }
   
   // resetState();
   console.log("next question");
   console.log(currentQuestionIndex);
   showQuestion(myQuestions[currentQuestionIndex]);
-
-  //TODO show finished message and textInput for high score initials when done with questions
-  if( currentQuestionIndex > 4 ) {
-    timeoutMessage.classList.add('hide');
-    finishMessage.classList.remove('hide');
-    score.innerHTML = "Score: " + (points + secondsLeft);
-  }
 }
 
 function showQuestion(question) {
