@@ -53,7 +53,7 @@ function setNextQuestion() {
 
 function showQuestion(question) {
   questionElement.innerHTML = myQuestions.question;
-  myQuestions.answers.forEach(answer => {
+  question.answers.forEach(answer => {
     var button = document.createElement('button');
     button.innerHTML = answer.text;
     button.classList.add('btn');
