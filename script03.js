@@ -94,12 +94,15 @@ function setNextQuestion() {
     answerButtonsElement.classList.add('hide');
     nextButton.classList.add('hide');
 
-
     //show score
     score.innerHTML = "Score: " + (points + secondsLeft);
     //TODO make element to show score
     //TODO make element textInput for initials
     submitButton.classList.remove('hide');
+    //TODO event listener for submit button
+      //TODO save score and initals to local storage
+    //TODO view highscores btn
+      //TODO display top 3 high scores
   }
   
   // resetState();
@@ -118,8 +121,8 @@ function showQuestion(question) {
       button.innerHTML = answer.text;
       button.classList.add('btn');
 
-      //TODO makes every answer wrong
-      if( answer.correct ) {
+      //TODO NOT WORKING makes every answer wrong
+      if( answer.correct.value ) {
         button.setAttribute('correct', true);
       } else {
         button.setAttribute('correct', false);
