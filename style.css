@@ -1,32 +1,17 @@
-/* body {
-  padding: 50px;
-} */
-
 *, *::before, *::after {
   box-sizing: border-box;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-/* :root {
-  --hue-neutral: 200;
-  --hue-wrong: 0;
-  --hue-correct: 145;
-} */
-
 body {
-  /* --hue: var(--hue-neutral); */
-
-  /* background-color: hsl(var(--hue), 100%, 20%); */
   background-color: yellowgreen !important;
 }
 
 body.correct {
-  /* --hue: var(--hue-correct); */
   background-color: green;
 }
 
 body.wrong {
-  /* --hue: var(--hue-wrong); */
   background-color: red;
 }
 
@@ -34,9 +19,6 @@ body.wrong {
 .container {
   padding: 20px;
   margin: auto;
-  /* display: block; */
-  /* justify-content: center; */
-  /* align-items: center; */
   margin-top: 100px;
   width: 800px;
   max-width: 80%;
@@ -54,8 +36,6 @@ body.wrong {
 }
 
 .btn {
-  /* --hue: var(--hue-neutral); */
-  /* background-color: hsl(var(--hue), 100%, 50%); */
   background-color: yellowgreen;
   border-radius: 5px 10px;
   color: black;
@@ -67,13 +47,11 @@ body.wrong {
 }
 
 .btn.correct {
-  /* --hue: var(--hue-correct); */
   background-color: green;
   color: white;
 }
 
 .btn.wrong {
-  /* --hue: var(--hue-wrong); */
   background-color: red;
   color: white;
 }
@@ -90,7 +68,6 @@ body.wrong {
   align-items: center;
 }
 
-/* TODO only working for questions, not buttons */
 .hide {
   display: none !important;
 }

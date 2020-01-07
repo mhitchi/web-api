@@ -19,9 +19,9 @@ const myQuestions = [
     question: "Where is Waldo really?",
     answers: [
       {text: "Antarctica", correct: false},
+      {text: "Minding his own business, so stop asking", correct: true},
       {text: "Exploring the Pacific Ocean", correct: false},
-      {text: "Sitting in a tree", correct: false},
-      {text: "Minding his own business, so stop asking", correct: true}
+      {text: "Sitting in a tree", correct: false}
     ],
   }
 ]
