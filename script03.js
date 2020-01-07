@@ -48,7 +48,7 @@ function startGame() {
   console.log("started");
   //hide start button and show next button
   startButton.classList.add("hide");
-  nextButton.classList.remove("hide");
+  //nextButton.classList.remove("hide");
   //hide h1 and p
   header.classList.add('hide');
   paragraph.classList.add('hide');
@@ -106,13 +106,14 @@ function setNextQuestion() {
     //TODO make element to show score
     //TODO show textInput for initials
     inputTxt.classList.remove('hide');
-    inputTxt.maxLength = 2
+    inputTxt.maxLength = 2;
+   
     //if not empty, show submit button
-    if( inputTxt.value !== " " ) { 
+    //if( inputTxt.length > 0 ) { 
       submitButton.classList.remove('hide');
       //TODO event listener for submit button
       submitButton.addEventListener('click', saveLocal);
-    }
+    //}
   }
   
   // resetState();
@@ -131,8 +132,15 @@ function showQuestion(question) {
       button.innerHTML = answer.text;
       button.classList.add('btn');
 
+      // if( myQuestions.answers.includes("true") ) {
+      //   button.setAttribute('correct', true);
+      // } else {
+      //    button.setAttribute('correct', false);
+      // }
+  
+
       //TODO NOT WORKING makes every answer wrong
-      if( answer.correct.value ) {
+      if( answer.correct ) {
         button.setAttribute('correct', true);
       } else {
         button.setAttribute('correct', false);
@@ -148,14 +156,16 @@ function showQuestion(question) {
 //tried (event, button), (event, answer)
 function selectAnswer(event) {
   event.preventDefault();
-  var state = button.getAttribute('correct');
-
-  if( state === true ) {
-    console.log("correct");
+  var question = myQuestions[currentQuestionIndex];
+  //if answer clicked was true, turn green
+  if( event.target.getAttribute("correct") === "true" ){
+    button.classList.add('correct');
     points++;
-  } else {
-    console.log("wrong");
+    nextButton.classList.remove('hide');
+  } else if( event.target.getAttribute("correct") === "false" ){
+    button.classList.add('wrong');
     points--;
+    nextButton.classList.remove('hide');
   }
 }
 
@@ -180,7 +190,7 @@ function saveLocal() {
   finalScore = points + secondsLeft;
   localStorage.setItem("finalScore", JSON.stringify(finalScore));
   //TODO Not saving input text
-  //localStorage.setItem("initials", JSON.stringify(inputTxt.value()));
+  localStorage.setItem("initials", inputTxt.value);
   submitButton.classList.add('hide');
   viewHighscore.classList.remove('hide');
   //add event listener on highscore button
@@ -189,7 +199,9 @@ function saveLocal() {
   
 //TODO display top 3 high scores
 function showHighscore() {
-  JSON.parse(localStorage.getItem("finalScore"));
+  var finalNum= JSON.parse(localStorage.getItem("finalScore"));
+  var finalInitials= localStorage.getItem("initials");
+
   //sort array for highest scores
   //create and append elements for initials and high scores
 }
