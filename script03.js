@@ -204,20 +204,53 @@ function saveLocal() {
   
 //TODO display top 3 high scores
 function showHighscore() {
+  //hide input field, show score list, hide viewhighscores, show start button
+  inputTxt.classList.add('hide');
   scoreList.classList.remove('hide');
+  viewHighscore.classList.add('hide');
+  startButton.classList.remove('hide');
+  score = 0;
+
+  // retrieve score and initials from local storage
   var finalNum= JSON.parse(localStorage.getItem("finalScore"));
   var finalInitials= localStorage.getItem("initials");
+
+  //get scores from local storage
+  highscoreList = JSON.parse(localStorage.getItem("highscoreList"));
 
   //create object of player and score
   var gameResult = {player: finalInitials, score: finalNum};
   //add object to highscore array
   highscoreList.push(gameResult);
+  //save high score list to local storage
+  localStorage.setItem("highscores", highscoreList);
   //sort highscore array from high to low
   highscoreList.sort(function(a,b) { return (b.score - a.score ) });
 
-  //fill first high score
-  var first = document.getElementById('first')
-  first.textContent = (highscoreList[0].player + " - score: "+ highscoreList[0].score);
+  //loops through scores and displays on DOM
+  for (var i = 0; i < highscoreList.length; i++) {
+    $("#highscores").append(
+      "<li class='list-group-item border-0'>" +
+        highscoreList[i].name +
+        "---" +
+        highscoreList[i].score
+    );
+  }
 
- 
+  //updates local storage
+  localStorage.setItem("highscoreList", JSON.stringify(highscoreList));
+
+  inputTxt = "";
+
+  // //fill first high score
+  // var first = document.getElementById('first')
+  // first.textContent = (highscoreList[0].player + " - score: "+ highscoreList[0].score);
+
+  // //fill second high score
+  // var second = document.getElementById('second')
+  // second.textContent = (highscoreList[1].player + " - score: "+ highscoreList[1].score);
+
+  // //fill third high score
+  // var third = document.getElementById('third')
+  // third.textContent = (highscoreList[2].player + " - score: "+ highscoreList[2].score);
 }
