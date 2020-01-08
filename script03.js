@@ -33,6 +33,7 @@ var highscoreList = [];
 var finalScore;
 var button;
 var initials;
+var timerInterval;
 
 let currentQuestionIndex = -1;
 
@@ -63,7 +64,7 @@ function startGame() {
 
 //start timer from 75
 function setTime() {
-  var timerInterval = setInterval(function() {
+  timerInterval = setInterval(function() {
     //decrease seconds left
     secondsLeft--;
     //count down
@@ -93,8 +94,8 @@ function setNextQuestion() {
   currentQuestionIndex++;
 
   //show finished message
-  //TODO show textInput for high score initials when done with questions
   if( currentQuestionIndex === 5 ) {
+    clearInterval(timerInterval);
     timeoutMessage.classList.add('hide');
     finishMessage.classList.remove('hide');
     questionElement.classList.add('hide');
@@ -104,7 +105,10 @@ function setNextQuestion() {
     //show score
     score.innerHTML = "Score: " + (points + secondsLeft);
     //TODO make element to show score
-    //TODO show textInput for initials
+    var showScore = document.createElement('h1');
+    var showScoreText = score.innerHTML;
+    showScore.append(showScoreText);
+    //show textInput for initials
     inputTxt.classList.remove('hide');
     inputTxt.maxLength = 2;
    
@@ -201,6 +205,13 @@ function saveLocal() {
 function showHighscore() {
   var finalNum= JSON.parse(localStorage.getItem("finalScore"));
   var finalInitials= localStorage.getItem("initials");
+
+    var gameResult = {player: finalInitials, score: finalNum};
+    highscoreList.push(gameResult);
+    highscoreList.sort(function(a,b) { return (b.score - a.score ) });
+
+    var first = document.getElementById('#first')
+    first.textContent = (highscoreList[0].player + " - score: "+ highscoreList[0].score);
 
   //sort array for highest scores
   //create and append elements for initials and high scores
