@@ -27,6 +27,7 @@ const finishMessage = document.getElementById('finished');
 const score = document.getElementById('score');
 const submitButton = document.getElementById('submit-btn');
 const viewHighscore = document.getElementById('highscore-btn');
+var scoreList = document.getElementById('scoreList');
 const inputTxt = document.getElementById('inputTxt');
 
 var highscoreList = [];
@@ -203,16 +204,20 @@ function saveLocal() {
   
 //TODO display top 3 high scores
 function showHighscore() {
+  scoreList.classList.remove('hide');
   var finalNum= JSON.parse(localStorage.getItem("finalScore"));
   var finalInitials= localStorage.getItem("initials");
 
-    var gameResult = {player: finalInitials, score: finalNum};
-    highscoreList.push(gameResult);
-    highscoreList.sort(function(a,b) { return (b.score - a.score ) });
+  //create object of player and score
+  var gameResult = {player: finalInitials, score: finalNum};
+  //add object to highscore array
+  highscoreList.push(gameResult);
+  //sort highscore array from high to low
+  highscoreList.sort(function(a,b) { return (b.score - a.score ) });
 
-    var first = document.getElementById('#first')
-    first.textContent = (highscoreList[0].player + " - score: "+ highscoreList[0].score);
+  //fill first high score
+  var first = document.getElementById('first')
+  first.textContent = (highscoreList[0].player + " - score: "+ highscoreList[0].score);
 
-  //sort array for highest scores
-  //create and append elements for initials and high scores
+ 
 }
