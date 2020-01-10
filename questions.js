@@ -1,43 +1,44 @@
 const myQuestions = [
   {
-    question: "Who is the strongest?",
+    question: "How do you create a function in JavaScript?",
     answers: [
-      {text: "Superman", correct: false},
-      {text: "The Terminator", correct: false},
-      {text: "Waluigi, obviously", correct: true}
+      {text: "function: myFunction()", correct: false},
+      {text: "function = myFunction()", correct: false},
+      {text: "function myFunction()", correct: true}
     ],
   },
   {
-    question: "What is the best site ever created?",
+    question: "How do you write 'Hello World' in an alert box?",
     answers: [
-      {text: "SitePoint", correct: false},
-      {text: "Simple Steps Code", correct: false},
-      {text: "Trick question; they're both the best", correct: true}
+      {text: "msg('Hello World')", correct: false},
+      {text: "msgBox('Hello World')", correct: false},
+      {text: "alert('Hello World')", correct: true},
+      {text: "alertBox('Hello World')", correct: false}
     ],
   },
   {
-    question: "Where is Waldo really?",
+    question: "What is the correct syntax for referring to an external script called 'xxx.js'",
     answers: [
-      {text: "Antarctica", correct: false},
-      {text: "Minding his own business, so stop asking", correct: true},
-      {text: "Exploring the Pacific Ocean", correct: false},
-      {text: "Sitting in a tree", correct: false}
+      {text: "<script href = 'xxx.js'", correct: false},
+      {text: "<script src = 'xxx.js'", correct: true},
+      {text: "<script name = 'xxx.js'", correct: false},
     ],
   },
   {
-    question: "Who is the strongest 02?",
+    question: "Where is the correct place to insert a JavaScript?",
     answers: [
-      {text: "Superman", correct: false},
-      {text: "The Terminator", correct: false},
-      {text: "Waluigi, obviously", correct: true}
+      {text: "The <head> section", correct: false},
+      {text: "Both the <head> and the <body> sections", correct: false},
+      {text: "The <body> section", correct: true}
     ],
   },
   {
-    question: "What is the best site ever created 02?",
+    question: "Inside which HTML element do we put the JavaScript?",
     answers: [
-      {text: "SitePoint", correct: false},
-      {text: "Simple Steps Code", correct: false},
-      {text: "Trick question; they're both the best", correct: true}
+      {text: "<js>", correct: false},
+      {text: "<scripting>", correct: false},
+      {text: "<script>", correct: true},
+      {text: "<javascript>", correct: false}
     ],
   }
 ]
